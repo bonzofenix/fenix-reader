@@ -38,4 +38,31 @@ FenixReader::Application.configure do
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'example.com' }
 
+  # mocks for omniauth
+  require 'omniauth'
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:twitter] = Hashie::Mash.new(
+    'provider' => 'twitter',
+    'credentials' => {
+      'token' => '179383862-hJS4mnfNIG14iReW2zgPTemqoz1ZWrpE1cf8o9zk',
+      'secret' => 'U03Wc1ZIhodLeg11TEdtM0ewFO1OV1ebuyY3AF8'
+    },
+    'extra' => {
+      'raw_info' => {
+        'id' => '1337',
+        'name' => 'Diegote'
+      }
+    }
+  )
+  OmniAuth.config.mock_auth[:google_oauth] = Hashie::Mash.new(
+    "provider" => "google_oauth",
+    "info"=>
+      {"email" => "example_user@gmail.com",
+       "uid"=> "example_user@gmail.com",
+       "name" => "Guido Su"},
+    "credentials"=>
+      {"token"=>"longlivedtokenforgoogle",
+       "secret"=>"thesecretforthetoken"}
+    )
+
 end
