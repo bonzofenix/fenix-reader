@@ -1,0 +1,8 @@
+.span3.well
+  = form_tag(feeds_subscribe_path) do
+    = text_field_tag 'url','', placeholder: 'url'
+    = button_tag 'Subscribe',class: 'btn', :disable_with => "Please wait..."
+
+.span8
+
+  

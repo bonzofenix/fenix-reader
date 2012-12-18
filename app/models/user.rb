@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :channels
+   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -7,9 +9,18 @@ class User < ActiveRecord::Base
          :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation,
-                  :remember_me, :provider, :uid
+  attr_accessible :first_name, :email, :password, :password_confirmation,
+                  :remember_me, :provider, :uid, :avatar_size
   
+  def add_channel(url)
+    debugger
+    self.channels.create(url: url) if can_add_channel?
+  end
+
+  def can_add_channel?
+    self.channels.count < max_channels
+  end
+
   # find_for_twitter and find_for_google
   def self.find_for_twitter(access_token)
     user = User.find_or_initialize_by_uid_and_provider(uid: access_token[:uid],
