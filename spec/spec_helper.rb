@@ -17,6 +17,7 @@ OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:twitter] = {:provider => 'twitter', :uid => '123545'}
 
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, :type => :controller
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
 
@@ -51,5 +52,10 @@ RSpec.configure do |config|
   end
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  # To check if a channel is correct a get connection should be made. We asume that
+  # that the urls received are correct unless this stub is override
+  config.before(:each) do
   end
 end

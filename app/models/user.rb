@@ -13,12 +13,7 @@ class User < ActiveRecord::Base
                   :remember_me, :provider, :uid, :avatar_size
   
   def add_channel(url)
-    debugger
-    self.channels.create(url: url) if can_add_channel?
-  end
-
-  def can_add_channel?
-    self.channels.count < max_channels
+    self.channels.create(url: url) 
   end
 
   # find_for_twitter and find_for_google

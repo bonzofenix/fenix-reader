@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe User do
   let(:user){ create :user }
+  before(:each){ Channel.any_instance.stub(check_url: true) }
+
   describe 'when creating twitter users' do
     it 'authenticated user' do
       expect do
@@ -14,6 +16,7 @@ describe User do
       user.should be_confirmed
     end
   end
+
   describe 'when adding channels' do
     it 'creates the channel if the url response 200' do
       expect do
@@ -25,7 +28,8 @@ describe User do
     end
 
     it 'can not add a channel if there istnt enough space' do
-      user.max_channels = 1
+      user.update_attribute(:max_channels, 1)
+
       expect do
         user.add_channel('www.rss_valid_url1.com')
         user.add_channel('www.rss_valid_urli2.com')

@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Channel do
-  let(:channel){ build :channel }
+  let(:channel){ build :channel, :with_user }
+
   describe 'when checking the url' do
 
     it 'call check_url before saving' do   
