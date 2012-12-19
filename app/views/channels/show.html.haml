@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b String:
+  = @channel.string
+%p
+  %b References:
+  = @channel.references
+
+= link_to 'Edit', edit_channel_path(@channel)
+\|
+= link_to 'Back', channels_path
