@@ -1,8 +1,27 @@
-.span3.well
+.span4.well
+
   = form_tag(feeds_subscribe_path) do
     = text_field_tag 'url','', placeholder: 'url'
     = button_tag 'Subscribe',class: 'btn', :disable_with => "Please wait..."
 
-.span8
-
+.span7
+  - @feeds.each do |f|
+    .well
+      .control-group
+        %label.control-label
+          Title
+          .controls
+            =link_to f.title, f.url
+      .control-group
+        %label.control-label
+          Published date
+          .controls
+            = f.published_at 
+      .control-group
+        %label.control-label
+          summary
+          .controls
+            =raw f.summary
   
+
+    

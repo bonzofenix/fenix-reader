@@ -1,16 +1,26 @@
 require 'spec_helper'
 
 describe FeedsController do
+  let(:user){ create :user }
+  let(:channel){ create :channel, user: user }
+  let(:feed){ create :feed_entry, channel: channel }
+
   describe 'when logged in' do
     before(:each) do
-      @user = create(:user)
-      sign_in @user
+      sign_in user
       Channel.any_instance.stub(check_url: true) 
     end
 
-    describe "GET 'index'" do
-      it "returns http success" do
+    describe 'GET index' do
+      it 'returns http success' do
         get 'index'
+        response.should be_success
+      end
+
+      it 'returns all the feeds' do
+        feed
+        get 'index'
+        assigns(:feeds).length.should == 1
         response.should be_success
       end
     end

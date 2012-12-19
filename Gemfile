@@ -10,9 +10,10 @@ gem 'whenever', :require => false
 gem 'jquery-rails'
 gem 'unicorn', '>= 4.3.1'
 gem 'bootstrap-sass', '>= 2.1.1.0'
+gem 'inherited_resources'
 gem 'devise', '>= 2.1.2'
 gem 'pg', '>= 0.14.1'
-#gem 'sqlite3-ruby'
+gem 'sqlite3-ruby'
 gem 'haml', '>= 3.1.7'
 gem 'haml-rails', '>= 0.3.5', :group => :development
 gem 'hpricot', '>= 0.8.6', :group => :development

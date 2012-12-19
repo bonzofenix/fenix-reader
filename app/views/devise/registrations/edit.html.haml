@@ -11,11 +11,13 @@
           = f.email_field :email, placeholder: 'Email'
         %p
           = f.password_field :password, :autocomplete => "off", placeholder: 'Password'
+          %br
           %i (leave blank if you don't want to change it)
         %p
           = f.password_field :password_confirmation, placeholder: 'Password confirmation'
         %p
           = f.password_field :current_password, placeholder: 'Current password'
+          %br
           %i (we need your current password to confirm your changes)
       .span6 
         

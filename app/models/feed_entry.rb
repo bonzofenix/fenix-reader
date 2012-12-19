@@ -4,7 +4,6 @@ class FeedEntry < ActiveRecord::Base
 
  def self.update_from_feed(channel)
     feed = get_parsed_feed(channel) 
-    debugger
     add_entries(feed.entries, channel)
   end
   

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe FeedEntry do
   let(:channel){ create :channel, :with_user }
+
   before :each do
     # mocks feedzirra rss entries response
     @feed = Feedzirra::Parser::RSS.new
@@ -18,6 +19,7 @@ describe FeedEntry do
     FeedEntry.stub(get_parsed_feed: @feed)
     Channel.any_instance.stub(check_url: true) 
   end
+
   
   describe 'when adding entry' do
     it 'adds the entry' do

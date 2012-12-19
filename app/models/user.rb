@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :channels
+  has_many :feed_entries, through: :channels
    
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
