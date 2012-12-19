@@ -3,25 +3,26 @@
   = form_tag(feeds_subscribe_path) do
     = text_field_tag 'url','', placeholder: 'url'
     = button_tag 'Subscribe',class: 'btn', :disable_with => "Please wait..."
+  =render :filters
 
 .span7
-  - @feeds.each do |f|
+  - @feed_entries.each do |e|
     .well
       .control-group
         %label.control-label
           Title
           .controls
-            =link_to f.title, f.url
+            =link_to e.title, e.url
       .control-group
         %label.control-label
           Published date
           .controls
-            = f.published_at 
+            = e.published_at 
       .control-group
         %label.control-label
           summary
           .controls
-            =raw f.summary
-  
-
-    
+            =raw e.summary
+    = form_for e,remote: true do |f|
+      = f.select :stars, ['no Stars', nil] + (1..5).collect {|i| [  "#{i} star", i ] }, {},
+        onchange: "$(this.form).submit();"

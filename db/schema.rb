@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218221735) do
+ActiveRecord::Schema.define(:version => 20121219151142) do
 
   create_table "channels", :force => true do |t|
     t.string   "url"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20121218221735) do
     t.integer  "channel_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "stars"
   end
 
   create_table "users", :force => true do |t|

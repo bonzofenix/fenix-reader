@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FeedsController do
+describe FeedEntriesController do
   let(:user){ create :user }
   let(:channel){ create :channel, user: user }
   let(:feed){ create :feed_entry, channel: channel }
@@ -20,7 +20,7 @@ describe FeedsController do
       it 'returns all the feeds' do
         feed
         get 'index'
-        assigns(:feeds).length.should == 1
+        assigns(:feed_entries).length.should == 1
         response.should be_success
       end
     end

@@ -15,6 +15,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
 # For integration test for oauth authentication
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:twitter] = {:provider => 'twitter', :uid => '123545'}
+Capybara.javascript_driver = :selenium
 
 RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller

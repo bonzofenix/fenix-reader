@@ -1,4 +1,14 @@
 module FeatureHelpers
+
+  def feature_sign_in(user)
+    visit root_path
+    within("#new_session") do
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Sign in'
+    end
+  end
+
   def logged_in?
     page.has_selector? "a", text: "Logout"
   end

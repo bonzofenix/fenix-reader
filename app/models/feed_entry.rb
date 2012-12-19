@@ -1,6 +1,6 @@
 class FeedEntry < ActiveRecord::Base
   belongs_to :channel
-  attr_accessible :guid, :published_at, :summary, :title, :url, :channel_id
+  attr_accessible :guid, :published_at, :summary, :title, :url, :channel_id, :stars
 
  def self.update_from_feed(channel)
     feed = get_parsed_feed(channel) 

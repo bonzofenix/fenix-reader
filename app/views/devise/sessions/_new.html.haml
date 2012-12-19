@@ -1,6 +1,6 @@
 %h2= 'Sign in'
 
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+= form_for(resource, as: resource_name, url: session_path(resource_name),html:{ id: 'new_session'}) do |f|
   %p
     = f.email_field :email, placeholder: 'Email'
 
