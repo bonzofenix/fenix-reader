@@ -11,13 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219151142) do
+ActiveRecord::Schema.define(:version => 20121220174003) do
 
   create_table "channels", :force => true do |t|
     t.string   "url"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "text"
+    t.integer  "feed_entry_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "feed_entries", :force => true do |t|
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20121219151142) do
     t.string   "uid"
     t.integer  "avatar_size"
     t.integer  "max_channels",           :default => 10
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

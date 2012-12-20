@@ -17,6 +17,12 @@ describe Channel do
     end
 
     it 'checks that its rss' do
+      Channel.any_instance.stub(get_response:  get_xml(:atom))
+      channel.save 
+      channel.title.should == 'My Simple Feed'
+    end
+
+    it 'adds the title of the channel if possible' do
       Channel.any_instance.stub(get_response:  get_xml(:rss))
       channel.save 
       channel.should be_persisted

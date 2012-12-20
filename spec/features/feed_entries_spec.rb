@@ -46,4 +46,16 @@ feature 'Sets starts in the feed', js: true do
     end
     page.should have_css("div.feed_entries li", count: 1) 
   end
+
+  scenario 'adds a comment' do
+    pending
+    feed
+    page.should have_css("div.feed_entries li ul.comments li", count: 0) 
+    feed_container_id =  "#feed_entry_#{feed.id}"
+    within(feed_container_id) do
+      fill_in 'Comment in here', with: 'this is a new comment'
+      find("#{feed_container_id} .comment_input").native.send_keys(:return)
+    end
+    page.should have_css("div.feed_entries li ul.comments li", count: 1) 
+  end
 end

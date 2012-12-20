@@ -1,7 +1,7 @@
 module ModelHelpers
   def get_xml(type)
     case type
-      when :valid_rss
+      when :rss
         '''
         <?xml version="1.0" encoding="ISO-8859-1" ?>
         <rss version="2.0">
@@ -17,7 +17,7 @@ module ModelHelpers
           </channel>
         </rss>
         '''
-      when :valid_atom
+      when :atom
         '''
         <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en" xml:base="http://www.example.org">
           <id>http://www.example.org/myfeed</id>

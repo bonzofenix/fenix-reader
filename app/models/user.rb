@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :email, :password, :password_confirmation,
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation,
                   :remember_me, :provider, :uid, :avatar_size
   
   def add_channel(url)

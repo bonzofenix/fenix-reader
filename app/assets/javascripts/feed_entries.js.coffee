@@ -10,3 +10,14 @@ $ ->
     params.push "summary=#{summary}" if summary
     params.push "title=#{summary}" if title
     location.href= '/feed_entries?' + params.join('&')
+
+  $('.new_comment').on 'keypress', '.comment_input', (e)->
+    text_box = e.target
+    if(e.keyCode == 13)
+      $(text_box.form).submit()
+      comment = $(text_box).val()
+      $(text_box).parent().find('ul.comments').append "<li><p>#{ comment}</li></p>"
+      $(text_box).val('')
+    return null
+
+    

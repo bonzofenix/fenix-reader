@@ -1,6 +1,6 @@
 .span4
   .well
-    = form_tag(feeds_subscribe_path) do
+    = form_tag(feeds_subscribe_path) do 
       = text_field_tag 'url','', placeholder: 'url'
       = button_tag 'Subscribe',class: 'btn', :disable_with => "Please wait..."
   .well
@@ -10,12 +10,19 @@
       = button_tag 'Search',id: 'search',class: 'btn', :disable_with => "Please wait..."
 
 .span7.feed_entries
-  - @feed_entries.each do |e|
-    %li.well.feed_entry
-      =link_to e.title, e.url
+  - @feed_entries.each do |feed|
+    %li.well.feed_entry{id: "feed_entry_#{feed.id}"}
+      =link_to feed.title, feed.url
       %br
-      = e.published_at 
-      =raw e.summary
-      = form_for e,remote: true do |f|
+      = feed.published_at 
+      = raw feed.summary
+      %hr
+      = form_for feed, remote: true do |f|
         = f.select :stars, ['no Stars', nil] + (1..5).collect {|i| [  "#{i} star", i ] }, {},
           onchange: "$(this.form).submit();"
+      %hr
+      = form_for [ feed, Comment.new ],remote: true do |f|
+        = render 'comments/list', comments: feed.comments
+        = f.text_area :text, cols: 100, rows: 4, placeholder: 'Comment in here',
+          class: 'comment_input'
+        
