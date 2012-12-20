@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe FeedEntry do
   let(:channel){ create :channel, :with_user }
+  let(:feed){ create :feed_entry, channel: channel }
+  let(:other_feed){ create :feed_entry, channel: channel }
+
 
   before :each do
     # mocks feedzirra rss entries response
@@ -32,5 +35,12 @@ describe FeedEntry do
       FeedEntry.update_from_feed(channel) 
       FeedEntry.last.channel.should == channel
     end
+  end
+  
+  it 'return stared feeds' do
+    feed
+    other_feed.update_attribute(:stars, 3)
+    FeedEntry.stared.count.should == 1
+    FeedEntry.all.count.should == 2
   end
 end

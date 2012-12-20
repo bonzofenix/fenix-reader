@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'unicorn', '>= 4.3.1'
 gem 'bootstrap-sass', '>= 2.1.1.0'
 gem 'inherited_resources'
+gem 'has_scope'
 gem 'devise', '>= 2.1.2'
 gem 'pg', '>= 0.14.1'
 gem 'sqlite3-ruby'
@@ -40,7 +41,7 @@ end
 
 group :test do
   gem 'capybara'
-gem 'capybara-webkit'
+  gem 'capybara-webkit', :git => 'https://github.com/thoughtbot/capybara-webkit.git'
   gem 'database_cleaner', '>= 0.9.1', :group => :test
   gem 'debugger'
 end

@@ -1,5 +1,10 @@
 class FeedEntry < ActiveRecord::Base
   belongs_to :channel
+  scope :starred, where( 'stars <> 0' )
+  scope :summary, proc { |summary| where(['summary LIKE ?', "%#{summary}%"]) }
+  scope :title, proc { |title| where(['title LIKE ?', "%#{title}%"]) }
+
+
   attr_accessible :guid, :published_at, :summary, :title, :url, :channel_id, :stars
 
  def self.update_from_feed(channel)

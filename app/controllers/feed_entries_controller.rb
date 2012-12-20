@@ -1,5 +1,10 @@
 class FeedEntriesController <  InheritedResources::Base
   actions :index, :edit, :update
+
+  has_scope :starred, :type => :boolean
+  has_scope :summary
+  has_scope :title
+
   def update
     update! do |format|
       format.js { render nothing: true }

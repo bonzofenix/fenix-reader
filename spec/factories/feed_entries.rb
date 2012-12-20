@@ -7,5 +7,6 @@ FactoryGirl.define do
     url 'www.coolfeed.com/rss/32'
     published_at '2012-12-18 19:17:35'
     guid '1'
+    stars 0
   end
 end

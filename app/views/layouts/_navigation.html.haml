@@ -2,7 +2,9 @@
 %ul.nav
   - if user_signed_in?
     %li
-      = link_to 'Feeds', feed_entries_path
+      = link_to 'All Feeds', feed_entries_path
+    %li
+      = link_to 'Starred', feed_entries_path(starred: true)
     %li
       = link_to 'Subscribed channels', channels_path
     %li
