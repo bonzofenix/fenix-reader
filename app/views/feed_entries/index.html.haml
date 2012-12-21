@@ -10,19 +10,20 @@
       = button_tag 'Search',id: 'search',class: 'btn', :disable_with => "Please wait..."
 
 .span7.feed_entries
-  - @feed_entries.each do |feed|
-    %li.well.feed_entry{id: "feed_entry_#{feed.id}"}
-      =link_to feed.title, feed.url
-      %br
-      = feed.published_at 
-      = raw feed.summary
-      %hr
-      = form_for feed, remote: true do |f|
-        = f.select :stars, ['no Stars', nil] + (1..5).collect {|i| [  "#{i} star", i ] }, {},
-          onchange: "$(this.form).submit();"
-      %hr
-      = form_for [ feed, Comment.new ],remote: true do |f|
-        = render 'comments/list', comments: feed.comments
-        = f.text_area :text, cols: 90, rows: 4, placeholder: 'Comment in here',
-          class: 'comment_input'
+  - if @feed_entries
+    - @feed_entries.each do |feed|
+      %li.well.feed_entry{id: "feed_entry_#{feed.id}"}
+        =link_to feed.title, feed.url
+        %br
+        = feed.published_at 
+        = raw feed.summary
+        %hr
+        = form_for feed, remote: true do |f|
+          = f.select :stars, ['no Stars', nil] + (1..5).collect {|i| [  "#{i} star", i ] }, {},
+            onchange: "$(this.form).submit();"
+        %hr
+        = form_for [ feed, Comment.new ],remote: true do |f|
+          = render 'comments/list', comments: feed.comments
+          = f.text_area :text, cols: 90, rows: 4, placeholder: 'Comment in here',
+            class: 'comment_input'
         

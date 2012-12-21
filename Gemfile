@@ -32,17 +32,21 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
 
+group :development do
+  gem 'taps', require: false
+  gem 'sqlite3'
+end
 
 group :test, :development do
   gem 'rspec-rails', '>= 2.11.4'
   gem 'letter_opener'
   gem 'factory_girl_rails', '>= 4.1.0'
   gem 'email_spec', '>= 1.4.0', :group => :test
+  gem 'debugger'
 end
 
 group :test do
   gem 'capybara'
   gem 'capybara-webkit', :git => 'https://github.com/thoughtbot/capybara-webkit.git'
   gem 'database_cleaner', '>= 0.9.1', :group => :test
-  gem 'debugger'
 end

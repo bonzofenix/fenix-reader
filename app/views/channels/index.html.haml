@@ -4,12 +4,14 @@
   %table.table.table-bordered
     %tr
       %th url
+      %th title 
       %th
       %th
 
     - @channels.each do |channel|
       %tr
         %td= channel.url
+        %td= channel.title
         %td= link_to 'Edit', edit_channel_path(channel)
         %td= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' }
 

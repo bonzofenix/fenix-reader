@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   end
 
   unless config.consider_all_requests_local
-    rescue_from Exception, :with => :render_404
+    rescue_from ActionController::RoutingError , with: :render_404
   end
 
   private
