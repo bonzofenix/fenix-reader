@@ -5,13 +5,13 @@ h1. Fenix Reader
 
 see the application working here:http://fenix-reader.heroku.com
 
-Stepts to deploy with capistrano:
+Steps to deploy with capistrano:
 
-After capistrano is setup in the application this are the following steps to put up the application:
+After capistrano is configured on the application this are the following steps to put the application on production:
 
 cap deploy:setup
 
-to create a special directory structure that’s required for Capistrano
+to create a special directory structure that’s required for Capistrano.
 
 cap deploy:check
 
