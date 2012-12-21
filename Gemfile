@@ -6,6 +6,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'activeadmin'
 gem 'whenever', :require => false
 gem 'jquery-rails'
 gem 'unicorn', '>= 4.3.1'
