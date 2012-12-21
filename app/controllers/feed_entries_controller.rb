@@ -1,4 +1,5 @@
 class FeedEntriesController <  InheritedResources::Base
+  before_filter :authenticate_user!
   actions :index, :edit, :update
   has_scope :starred, :type => :boolean
   has_scope :summary
