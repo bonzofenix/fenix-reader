@@ -23,6 +23,6 @@
       %hr
       = form_for [ feed, Comment.new ],remote: true do |f|
         = render 'comments/list', comments: feed.comments
-        = f.text_area :text, cols: 100, rows: 4, placeholder: 'Comment in here',
+        = f.text_area :text, cols: 90, rows: 4, placeholder: 'Comment in here',
           class: 'comment_input'
         
