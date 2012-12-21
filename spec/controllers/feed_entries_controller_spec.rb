@@ -9,6 +9,7 @@ describe FeedEntriesController do
     before(:each) do
       sign_in user
       Channel.any_instance.stub(check_url: true) 
+      Channel.any_instance.stub(set_title: true) 
     end
 
     describe 'GET index' do

@@ -7,6 +7,7 @@ describe CommentsController do
 
   before(:each) do
     Channel.any_instance.stub(check_url: true) 
+    Channel.any_instance.stub(set_title: true) 
   end
 
   describe 'when creating a comment' do
@@ -14,7 +15,8 @@ describe CommentsController do
       post :create, feed_entry_id: feed.id,
         comment: attributes_for(:comment), format: 'js'
       response.should be_success
-      response.body.should be_empty
+      debugger
+      response.body.should have_text(" ")
     end
 
     it 'creates the comment' do

@@ -15,6 +15,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
 # For integration test for oauth authentication
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:twitter] = {:provider => 'twitter', :uid => '123545'}
+OmniAuth.config.mock_auth[:google_oauth2] = {:provider => 'google_oauth2', :uid => '123545'}
 Capybara.javascript_driver = :webkit
 
 RSpec.configure do |config|

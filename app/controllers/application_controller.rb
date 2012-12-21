@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
 
   def render_404
     flash[:error] = 'The url you tried to access seems incorrect'
-    redirect_to home_path
+    redirect_to root_path
   end
 end

@@ -18,7 +18,7 @@ class Channel < ActiveRecord::Base
   def set_title
     xml = get_response(url)
     feed = Feedzirra::Feed.parse(xml)
-    self.title = feed.title
+    self.title ||= feed.title
   end
   
   def check_user_space

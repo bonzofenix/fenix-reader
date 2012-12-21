@@ -21,6 +21,7 @@ describe FeedEntry do
 
     FeedEntry.stub(get_parsed_feed: @feed)
     Channel.any_instance.stub(check_url: true) 
+    Channel.any_instance.stub(set_title: true) 
   end
 
   
@@ -40,7 +41,7 @@ describe FeedEntry do
   it 'return stared feeds' do
     feed
     other_feed.update_attribute(:stars, 3)
-    FeedEntry.stared.count.should == 1
+    FeedEntry.starred.count.should == 1
     FeedEntry.all.count.should == 2
   end
 end

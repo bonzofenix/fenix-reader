@@ -2,18 +2,23 @@ require 'spec_helper'
 
 describe User do
   let(:user){ create :user }
-  before(:each){ Channel.any_instance.stub(check_url: true) }
-
-  describe 'when creating twitter users' do
-    it 'authenticated user' do
-      expect do
-        User.find_for_twitter OmniAuth.config.mock_auth[:twitter]
-      end.to change{ User.count }
-    end
-    
-    it 'skips the confirmation' do
-      user = User.find_for_twitter OmniAuth.config.mock_auth[:twitter]
-      user.should be_confirmed
+  before(:each) do
+    Channel.any_instance.stub(check_url: true) 
+    Channel.any_instance.stub(set_title: true) 
+  end
+  
+  [:twitter, :google_oauth2].each do |service|
+    describe "when creating #{service} users" do
+      it 'authenticated user' do
+        expect do
+          User.send("find_for_#{service}", OmniAuth.config.mock_auth[service])
+        end.to change{ User.count }
+      end
+      
+      it 'skips the confirmation' do
+        user =User.send("find_for_#{service}", OmniAuth.config.mock_auth[service])
+        user.should be_confirmed
+      end
     end
   end
 

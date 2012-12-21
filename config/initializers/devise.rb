@@ -230,7 +230,9 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
-  config.omniauth :google_oauth2, "APP_ID", "APP_SECRET", { access_type: "offline", approval_prompt: "" }
+  require 'omniauth-google-oauth2'
+  config.omniauth :google_oauth2, '283789001782.apps.googleusercontent.com',
+    'PPTKh5n-KfAomRhkbEESad6L' , { access_type: "offline", approval_prompt: "" }
 
   require 'omniauth-twitter'
   config.omniauth :twitter, 'vDueaSx8wCACPBTTGQ1Sg', 'Cg0ghDUy4F2fZiA3ErkCMUTFcRVixAKt0CgMQTN04'
