@@ -20,7 +20,7 @@
         %hr
         = form_for feed, remote: true do |f|
           = f.select :stars, ['no Stars', nil] + (1..5).collect {|i| [  "#{i} star", i ] }, {},
-            onchange: "$(this.form).submit();"
+            class: 'feed_entry_stars'
         %hr
         = form_for [ feed, Comment.new ],remote: true do |f|
           = render 'comments/list', comments: feed.comments

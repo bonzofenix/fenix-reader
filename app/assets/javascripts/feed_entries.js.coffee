@@ -20,4 +20,6 @@ $ ->
       $(text_box).val('')
     return null
 
-    
+  $('.edit_feed_entry').on 'change', '.feed_entry_stars', (e)->
+    $(e.target.form).submit()
+    return null
