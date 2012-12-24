@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/bonzofenix/flajax.git
+  revision: 21c3c40b4ca225788f37ce3b14d9eaee626d4546
+  specs:
+    flajax (0.0.1)
+      haml
+      jquery-rails
+      rails (~> 3.1)
+
+GIT
   remote: https://github.com/thoughtbot/capybara-webkit.git
   revision: bca84f9a577963d99c99e735690905c5afb744b3
   specs:
@@ -311,6 +320,7 @@ DEPENDENCIES
   factory_girl_rails (>= 4.1.0)
   feedzirra
   figaro (>= 0.5.0)
+  flajax!
   haml (>= 3.1.7)
   haml-rails (>= 0.3.5)
   has_scope

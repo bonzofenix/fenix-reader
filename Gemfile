@@ -27,6 +27,8 @@ gem 'binding_of_caller', '>= 0.6.8', :group => :development
 gem 'hub', '>= 1.10.2', :require => nil, :group => [:development]
 gem 'feedzirra'
 
+gem 'flajax', :git => 'https://github.com/bonzofenix/flajax.git'
+
 # For authentication with twitter and google 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

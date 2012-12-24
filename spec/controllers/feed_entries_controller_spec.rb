@@ -10,6 +10,7 @@ describe FeedEntriesController do
       sign_in user
       Channel.any_instance.stub(check_url: true) 
       Channel.any_instance.stub(set_title: true) 
+      #Channel.any_instance.stub(:get_response).and_return( get_xml(:atom) )
     end
 
     describe 'GET index' do
