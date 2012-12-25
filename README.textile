@@ -5,22 +5,23 @@ h1. Fenix Reader
 
 see the application working here:http://fenix-reader.heroku.com
 
+User with feeds: (heroku does not allow cron jobs tu pull feeds from channels)
+  user: test@fenix-reader.com
+  password: password
+
 Steps to deploy with capistrano:
 
-After capistrano is configured on the application this are the following steps to put the application on production:
+To create a special directory structure that’s required for Capistrano.
+  cap deploy:setup
 
-cap deploy:setup
 
-to create a special directory structure that’s required for Capistrano.
+To check local environment and servers.
+  cap deploy:check
 
-cap deploy:check
 
-to check local environment and servers.
+To deploy the app and run migrations if needed
+  cap production deploy:migrate 
 
-cap production deploy:migrate 
-
-to deploy the app and make migrations if needed
-
-cap shell
+  cap shell
  
 And then run 'whenever' on apps/current dir so it generates the crontab file in each server where the app was deploy.
