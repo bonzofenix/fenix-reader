@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/bonzofenix/flajax.git
-  revision: 21c3c40b4ca225788f37ce3b14d9eaee626d4546
+  revision: b8320df6f350ab6a98f57e84bec5ac61b0d24cce
   specs:
     flajax (0.0.1)
       haml
