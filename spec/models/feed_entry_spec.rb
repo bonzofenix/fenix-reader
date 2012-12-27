@@ -22,7 +22,12 @@ describe FeedEntry do
     Channel.any_instance.stub(check_url: true) 
     Channel.any_instance.stub(set_title: true) 
   end
-
+  
+  it 'orders feed by publizhed at desc' do
+    feed.update_attribute(:published_at, Date.today - 1.day )
+    other_feed.update_attribute(:published_at, Date.today )
+    FeedEntry.all.should == [ other_feed, feed]
+  end
   
   describe 'when adding entry' do
     it 'adds the entry' do
