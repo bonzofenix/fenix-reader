@@ -3,26 +3,38 @@ require 'spec_helper'
 describe Channel do
   let(:user){ create :user }
   let(:channel){ build :channel, user: user }
+  let(:old_channel){ create(:channel, user: user) }
   let(:atom_xml){ get_xml(:atom) }
   let(:rss_xml){ get_xml(:rss) }
-  let(:old_channel){ create(:channel, user: user) }
 
+  let(:feedzirra_feed) do
+    # mocks feedzirra rss entries response
+    @feed = Feedzirra::Parser::RSS.new
+    @entry = Feedzirra::Parser::RSSEntry.new.tap do |e|
+      e.title = 'title'
+      e.summary = 'this is a summary'
+      e.url = 'www.rss.com'
+      e.published = Time.now
+      e.entry_id = 'guid'
+    end
+    
+    @feed.entries = [ @entry ]
+    @feed
+  end
   before :each do
     Channel.any_instance.stub(:get_response).and_return( atom_xml )
-    FeedEntry.stub(:update_from_feed)
   end
 
+  it 'when updateing feeds adds an entry' do
+    old_channel.stub(get_parsed_feed: feedzirra_feed)
+    expect do 
+      old_channel.update_feeds
+    end.to change{ old_channel.reload.feed_entries.count }.by(1)
+  end
 
-  describe 'after create' do
-    it 'update feeds if its a new record' do
-      channel.should_receive :update_feeds
-      channel.save
-    end
-
-    it 'does not update feeds if it is an old record' do
-     old_channel.should_not_receive :update_feeds
-      old_channel.save
-    end
+  it 'after create update feeds if its a new record' do
+    channel.should_receive :update_feeds
+    channel.save
   end
 
   describe 'before saving' do
@@ -43,7 +55,7 @@ describe Channel do
       channel.should_not be_persisted
     end
 
-    it 'does not overwrite the title if it was changed or exits' do
+    it 'does not overwrite the title if it was change or already exists' do
       old_channel = create :channel, user: user, title: 'custom title'
       old_channel.save 
       old_channel.title.should_not == 'My Simple Feed'
