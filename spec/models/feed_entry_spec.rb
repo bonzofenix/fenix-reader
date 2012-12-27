@@ -1,12 +1,9 @@
 require 'spec_helper'
 
 describe FeedEntry do
-  let(:channel){ create :channel, :with_user }
-  let(:feed){ create :feed_entry, channel: channel }
-  let(:other_feed){ create :feed_entry, channel: channel }
-
-
-  before :each do
+  let(:feed){ create :feed_entry }
+  let(:other_feed){ create :feed_entry }
+  let(:feedzirra_feed) do
     # mocks feedzirra rss entries response
     @feed = Feedzirra::Parser::RSS.new
     @entry = Feedzirra::Parser::RSSEntry.new.tap do |e|
@@ -18,8 +15,10 @@ describe FeedEntry do
     end
     
     @feed.entries = [ @entry ]
+    @feed
+  end
 
-    FeedEntry.stub(get_parsed_feed: @feed)
+  before :each do
     Channel.any_instance.stub(check_url: true) 
     Channel.any_instance.stub(set_title: true) 
   end
@@ -27,6 +26,7 @@ describe FeedEntry do
   
   describe 'when adding entry' do
     it 'adds the entry' do
+      FeedEntry.stub(get_parsed_feed: feedzirra_feed)
       expect do 
         FeedEntry.update_from_feed(channel) 
       end.to change{ FeedEntry.count }.by(1)

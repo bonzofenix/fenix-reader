@@ -8,6 +8,7 @@ describe CommentsController do
   before(:each) do
     Channel.any_instance.stub(check_url: true) 
     Channel.any_instance.stub(set_title: true) 
+    FeedEntry.stub(:update_from_feed)
     sign_in feed.channel.user
   end
 

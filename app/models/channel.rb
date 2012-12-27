@@ -4,7 +4,7 @@ class Channel < ActiveRecord::Base
   before_save :check_url
   before_save :check_user_space
   before_save :set_title
-
+  after_create :update_feeds
   attr_accessible :url
 
   # IF feedzirra finds a parser for the xml that the url returned then the 
@@ -29,6 +29,10 @@ class Channel < ActiveRecord::Base
     @xml ||= Net::HTTP.get_response(URI.parse(url)).body
   end
   
+  def update_feeds
+    FeedEntry.update_from_feed(self) 
+  end
+
   def self.update_feeds
     all.each {|c| FeedEntry.update_from_feed(c) }
   end

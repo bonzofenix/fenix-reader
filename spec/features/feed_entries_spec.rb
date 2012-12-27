@@ -9,6 +9,7 @@ feature 'Sets starts in the feed', js: true do
   before :each do
     Channel.any_instance.stub(check_url: true) 
     Channel.any_instance.stub(set_title: true) 
+    FeedEntry.stub(:update_from_feed)
   end
 
   background do
